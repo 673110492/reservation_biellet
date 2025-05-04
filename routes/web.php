@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AgenceController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VehiculeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,4 +41,14 @@ Route::prefix('agences')->name('agences.')->group(function () {
     Route::get('/{id}/edit', [AgenceController::class, 'edit'])->name('edit');
     Route::put('/{id}', [AgenceController::class, 'update'])->name('update');
     Route::delete('/{id}', [AgenceController::class, 'destroy'])->name('destroy');
+});
+
+Route::prefix('vehicules')->name('vehicules.')->group(function () {
+    Route::get('/', [VehiculeController::class, 'index'])->name('index');
+    Route::get('/create', [VehiculeController::class, 'create'])->name('create');
+    Route::post('/', [VehiculeController::class, 'store'])->name('store');
+    Route::get('/{id}', [VehiculeController::class, 'show'])->name('show');
+    Route::get('/{id}/edit', [VehiculeController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [VehiculeController::class, 'update'])->name('update');
+    Route::delete('/{id}', [VehiculeController::class, 'destroy'])->name('destroy');
 });

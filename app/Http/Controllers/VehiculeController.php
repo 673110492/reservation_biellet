@@ -2,63 +2,71 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vehicule;
+use App\Models\Agence;
 use Illuminate\Http\Request;
 
 class VehiculeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $vehicules = Vehicule::all();
+        $agences = Agence::all();
+        return view('vehicules.index', compact('vehicules','agences'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $agences = Agence::all();
+        return view('vehicules.create', compact('agences'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'agence_id' => 'required|exists:agences,id',
+            'numero_immatriculation' => 'required|string|unique:vehicules,numero_immatriculation',
+            'type' => 'required|string',
+            'nombre_places' => 'required|integer|min:1',
+        ]);
+
+        Vehicule::create($validated);
+
+        return redirect()->route('vehicules.index')->with('success', 'Véhicule ajouté avec succès.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $vehicule = Vehicule::with('agence')->findOrFail($id);
+        return view('vehicules.show', compact('vehicule'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $vehicule = Vehicule::findOrFail($id);
+        $agences = Agence::all();
+        return view('vehicules.edit', compact('vehicule', 'agences'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $vehicule = Vehicule::findOrFail($id);
+
+        $validated = $request->validate([
+            'agence_id' => 'required|exists:agences,id',
+            'numero_immatriculation' => 'required|string|unique:vehicules,numero_immatriculation,' . $vehicule->id,
+            'type' => 'required|string',
+            'nombre_places' => 'required|integer|min:1',
+        ]);
+
+        $vehicule->update($validated);
+
+        return redirect()->route('vehicules.index')->with('success', 'Véhicule mis à jour avec succès.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        Vehicule::destroy($id);
+        return redirect()->route('vehicules.index')->with('success', 'Véhicule supprimé.');
     }
 }

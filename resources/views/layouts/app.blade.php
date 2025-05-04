@@ -210,6 +210,10 @@
                                 class="nav-text">Agences</span></a>
 
                     </li>
+                    <li><a href="{{url('vehicules')}}"><i class="icon icon-app-store"></i><span
+                                class="nav-text">Vehicules</span></a>
+
+                    </li>
 
 
 

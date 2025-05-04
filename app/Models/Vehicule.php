@@ -9,6 +9,8 @@ class Vehicule extends Model
 {
     use HasFactory;
 
+    protected $guarded =[];
+
     public function agence() { return $this->belongsTo(Agence::class); }
 public function places() { return $this->hasMany(Place::class); }
 public function trajets() { return $this->hasMany(Trajet::class); }
