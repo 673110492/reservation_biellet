@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AgenceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VehiculeController;
@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
 Route::prefix('agences')->name('agences.')->group(function () {
@@ -51,4 +51,26 @@ Route::prefix('vehicules')->name('vehicules.')->group(function () {
     Route::get('/{id}/edit', [VehiculeController::class, 'edit'])->name('edit');
     Route::put('/{id}', [VehiculeController::class, 'update'])->name('update');
     Route::delete('/{id}', [VehiculeController::class, 'destroy'])->name('destroy');
+});
+Route::middleware(['auth'])->group(function () {
+    // Afficher la liste des utilisateurs
+    Route::get('/users', [UserController::class, 'index'])->name('user.index');
+
+    // Afficher le formulaire pour créer un nouvel utilisateur
+    Route::get('/users/create', [UserController::class, 'create'])->name('user.create');
+
+    // Enregistrer un nouvel utilisateur
+    Route::post('/users', [UserController::class, 'store'])->name('user.store');
+
+    // Afficher un utilisateur spécifique
+    Route::get('/users/{id}', [UserController::class, 'show'])->name('user.show');
+
+    // Afficher le formulaire pour modifier un utilisateur spécifique
+    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
+
+    // Mettre à jour les informations d'un utilisateur
+    Route::put('/users/{id}', [UserController::class, 'update'])->name('user.update');
+
+    // Supprimer un utilisateur spécifique
+    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 });
