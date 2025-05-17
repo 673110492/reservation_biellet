@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('trajets', function (Blueprint $table) {
             $table->id();
             $table->foreignId('vehicule_id')->constrained('vehicules');
-            $table->foreignId('station_depart_id')->constrained('stations');
-            $table->foreignId('station_arrivee_id')->constrained('stations');
             $table->decimal('prix', 8, 2);
             $table->time('duree');
             $table->timestamps();
