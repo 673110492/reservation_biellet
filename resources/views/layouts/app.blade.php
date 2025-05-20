@@ -203,45 +203,53 @@
             Sidebar start
         ***********************************-->
         <div class="quixnav">
-            <div class="quixnav-scroll">
-                <ul class="metismenu" id="menu">
-                    <li class="nav-label first">Menu Principal</li>
+    <div class="quixnav-scroll">
+        <ul class="metismenu" id="menu">
+            <li class="nav-label first">Menu Principal</li>
 
-                    <li>
-                        <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
-                            <i class="fas fa-tachometer-alt"></i>
-                            <span class="nav-text">Dashboard</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="./index.html">Dashboard 1</a></li>
-                            <li><a href="./index2.html">Dashboard 2</a></li>
-                        </ul>
-                    </li>
+            <li>
+                <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="./index.html">Dashboard 1</a></li>
+                    <li><a href="./index2.html">Dashboard 2</a></li>
+                </ul>
+            </li>
 
-                    <li>
-                        <a href="{{ url('agences') }}">
-                            <i class="fas fa-building"></i>
-                            <span class="nav-text">Agences</span>
-                        </a>
-                    </li>
+            <li>
+                <a href="{{ url('agences') }}">
+                    <i class="fas fa-building"></i>
+                    <span class="nav-text">Agences</span>
+                </a>
+            </li>
 
-                    <li>
-                        <a href="{{ url('vehicules') }}">
-                            <i class="fas fa-bus-alt"></i>
-                            <span class="nav-text">Véhicules</span>
-                        </a>
-                    </li>
+            <li>
+                <a href="{{ url('vehicules') }}">
+                    <i class="fas fa-bus-alt"></i>
+                    <span class="nav-text">Véhicules</span>
+                </a>
+            </li>
 
-                    <li>
-                        <a href="{{ url('trajets') }}">
-                            <i class="fas fa-route"></i>
-                            <span class="nav-text">Véhicules</span>
-                    </li>
+            <li>
+                <a href="{{ url('trajets') }}">
+                    <i class="fas fa-route"></i>
+                    <span class="nav-text">Trajets</span>
+                </a>
+            </li>
 
-            </div>
+            <li>
+                <a href="{{ url('reservations') }}">
+                    <i class="fas fa-ticket-alt"></i>
+                    <span class="nav-text">Réservations</span>
+                </a>
+            </li>
 
+        </ul>
+    </div>
+</div>
 
-        </div>
         <!--**********************************
             Sidebar end
         ***********************************-->
