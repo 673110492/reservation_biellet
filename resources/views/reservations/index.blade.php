@@ -54,9 +54,7 @@
                                     <thead>
                                         <tr>
                                             <th>Nom</th>
-                                            <th>Prénom</th>
                                             <th>Téléphone</th>
-                                            <th>Date réservation</th>
                                             <th>Véhicule</th>
                                             <th>Agence</th>
                                             <th>Trajet</th>
@@ -70,13 +68,11 @@
                                         @foreach ($reservations as $reservation)
                                             <tr>
                                                 <td>{{ $reservation->nom }}</td>
-                                                <td>{{ $reservation->prenom }}</td>
                                                 <td>{{ $reservation->telephone }}</td>
-                                                <td>{{ $reservation->date_reservation }}</td>
                                                 <td>{{ $reservation->vehicule->numero_immatriculation ?? 'N/A' }}</td>
                                                 <td>{{ $reservation->agence->nom ?? 'N/A' }}</td>
-                                                <td>{{ $reservation->trajet->ville_depart ?? 'N/A' }} →
-                                                    {{ $reservation->trajet->ville_arrivee ?? 'N/A' }}</td>
+                                                <td>{{ $reservation->trajet->depart ?? 'N/A' }} →
+                                                    {{ $reservation->trajet->arrivee ?? 'N/A' }}</td>
                                                 <td>{{ $reservation->nombre_places }}</td>
                                                 <td>{{ number_format($reservation->prix_total, 2, ',', ' ') }} F</td>
                                                 <td>

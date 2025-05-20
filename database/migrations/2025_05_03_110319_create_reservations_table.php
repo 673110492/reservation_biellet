@@ -25,7 +25,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('vehicule_id');
             $table->unsignedBigInteger('agence_id');
             $table->unsignedBigInteger('trajet_id');
-            $table->integer('nombre_places')->default(1);
+            $table->integer(column: 'nombre_places')->default(1);
             $table->decimal('prix_total', 10, 2)->nullable();
 
             // Clés étrangères

@@ -10,8 +10,13 @@ class VehiculeController extends Controller
 {
     public function index()
     {
-        $vehicules = Vehicule::with('agence')->get();
+        $vehicules = Vehicule::with('agence')
+            ->withCount('reservations')
+            ->withSum('reservations', 'nombre_places')
+            ->get();
+
         $agences = Agence::all();
+
         return view('vehicules.index', compact('vehicules', 'agences'));
     }
 
@@ -88,9 +93,22 @@ class VehiculeController extends Controller
 
         // Inverse le statut plein <-> vide
         $vehicule->status = ($vehicule->status === 'plein') ? 'vide' : 'plein';
-
         $vehicule->save();
 
         return redirect()->route('vehicules.index')->with('success', "Statut du véhicule mis à jour en '{$vehicule->status}'.");
+    }
+
+    // Méthode interne pour vérifier et mettre à jour le statut du véhicule selon les réservations
+    public function verifierStatut($vehicule)
+    {
+        $vehicule->loadSum('reservations', 'nombre_places');
+
+        if ($vehicule->reservations_sum_nombre_places >= $vehicule->nombre_places) {
+            $vehicule->status = 'plein';
+        } else {
+            $vehicule->status = 'vide';
+        }
+
+        $vehicule->save();
     }
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\AgenceController;
 use App\Http\Controllers\front\AcceuilController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\ReserverController;
 use App\Http\Controllers\TrajetController;
 use App\Http\Controllers\VehiculeController;
 use Illuminate\Support\Facades\Route;
@@ -97,4 +98,10 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/', [AcceuilController::class, 'index']);
 Route::get('/vehicule/{id}', [AcceuilController::class, 'show'])->name('vehicule.show');
 
+
+Route::prefix('reservation')->name('reservation.')->group(function () {
+    Route::get('/', [\App\Http\Controllers\front\ReserverController::class, 'index'])->name('index');
+    Route::post('/', [\App\Http\Controllers\front\ReserverController::class, 'store'])->name('store');
+});
+Route::get('/reservation/print/{id}', [\App\Http\Controllers\front\ReserverController::class, 'print'])->name('reservation.print');
 

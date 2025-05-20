@@ -25,6 +25,8 @@ class Reservation extends Model
         'prix_total',
     ];
 
+
+
     // 🚗 Relation avec le véhicule
     public function vehicule()
     {
