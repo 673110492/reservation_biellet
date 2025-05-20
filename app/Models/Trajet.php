@@ -21,7 +21,7 @@ class Trajet extends Model
 
     public function vehicule()
     {
-        return $this->belongsTo(Vehicule::class);
+        return $this->hasMany(Vehicule::class);
     }
 
     public function reservations()

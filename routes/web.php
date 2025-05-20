@@ -111,3 +111,33 @@ Route::get('/reservation/print/{id}', [\App\Http\Controllers\front\ReserverContr
 
 
 Route::get('/cart', [CartsController::class, 'index'])->name('cart.index');
+
+
+// Page d’accueil publique
+Route::get('/', [AcceuilController::class, 'index'])->name('home');
+
+// Routes accessibles uniquement aux utilisateurs authentifiés
+Route::middleware('auth')->group(function () {
+
+    // Routes accessibles uniquement aux admins
+    Route::middleware('role:admin')->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+        Route::prefix('agences')->name('agences.')->group(function () {
+            Route::get('/', [AgenceController::class, 'index'])->name('index');
+            // autres routes agence
+        });
+
+        // autres routes admin
+    });
+
+    // Routes utilisateurs authentifiés (non admin)
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    // etc.
+});
+Route::middleware(['auth', 'isAdmin'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    // toutes les autres routes admin ici...
+});
+

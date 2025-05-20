@@ -19,14 +19,14 @@
             @endif
 
             <!-- Breadcrumb -->
-            <div class="row page-titles mx-0">
+            <div class="mx-0 row page-titles">
                 <div class="col-sm-6 p-md-0">
                     <div class="welcome-text">
                         <h4>Gestion des trajets</h4>
                         <span class="ml-1">Datatable</span>
                     </div>
                 </div>
-                <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                <div class="mt-2 col-sm-6 p-md-0 justify-content-sm-end mt-sm-0 d-flex">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Table</a></li>
                         <li class="breadcrumb-item active"><a href="#">Trajets</a></li>
