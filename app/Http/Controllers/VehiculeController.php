@@ -99,16 +99,5 @@ class VehiculeController extends Controller
     }
 
     // Méthode interne pour vérifier et mettre à jour le statut du véhicule selon les réservations
-    public function verifierStatut($vehicule)
-    {
-        $vehicule->loadSum('reservations', 'nombre_places');
-
-        if ($vehicule->reservations_sum_nombre_places >= $vehicule->nombre_places) {
-            $vehicule->status = 'plein';
-        } else {
-            $vehicule->status = 'vide';
-        }
-
-        $vehicule->save();
-    }
+    
 }

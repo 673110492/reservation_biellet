@@ -60,6 +60,7 @@ Route::patch('vehicules/{id}/toggle-status', [VehiculeController::class, 'toggle
 
 
 
+
 Route::controller(TrajetController::class)->prefix('trajets')->name('trajets.')->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');

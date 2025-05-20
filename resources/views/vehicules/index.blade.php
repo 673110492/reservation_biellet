@@ -93,6 +93,8 @@
                                                         <i class="material-icons">visibility</i>
                                                     </a>
 
+                                                    
+
                                                     <!-- Éditer -->
                                                     <button type="button" class="btn btn-warning btn-sm"
                                                         data-bs-toggle="modal"
