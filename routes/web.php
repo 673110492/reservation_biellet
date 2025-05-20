@@ -2,6 +2,7 @@
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AgenceController;
 use App\Http\Controllers\front\AcceuilController;
+use App\Http\Controllers\front\CartsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ReserverController;
@@ -106,3 +107,5 @@ Route::prefix('reservation')->name('reservation.')->group(function () {
 });
 Route::get('/reservation/print/{id}', [\App\Http\Controllers\front\ReserverController::class, 'print'])->name('reservation.print');
 
+
+Route::get('/cart', [CartsController::class, 'index'])->name('cart.index');
