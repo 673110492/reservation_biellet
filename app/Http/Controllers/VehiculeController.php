@@ -10,9 +10,9 @@ class VehiculeController extends Controller
 {
     public function index()
     {
-        $vehicules = Vehicule::all();
+        $vehicules = Vehicule::with('agence')->get();
         $agences = Agence::all();
-        return view('vehicules.index', compact('vehicules','agences'));
+        return view('vehicules.index', compact('vehicules', 'agences'));
     }
 
     public function create()
@@ -28,7 +28,13 @@ class VehiculeController extends Controller
             'numero_immatriculation' => 'required|string|unique:vehicules,numero_immatriculation',
             'type' => 'required|string',
             'nombre_places' => 'required|integer|min:1',
+            'status' => 'required|in:plein,vide',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('vehicules', 'public');
+        }
 
         Vehicule::create($validated);
 
@@ -57,7 +63,13 @@ class VehiculeController extends Controller
             'numero_immatriculation' => 'required|string|unique:vehicules,numero_immatriculation,' . $vehicule->id,
             'type' => 'required|string',
             'nombre_places' => 'required|integer|min:1',
+            'status' => 'required|in:plein,vide',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('vehicules', 'public');
+        }
 
         $vehicule->update($validated);
 
@@ -68,5 +80,17 @@ class VehiculeController extends Controller
     {
         Vehicule::destroy($id);
         return redirect()->route('vehicules.index')->with('success', 'Véhicule supprimé.');
+    }
+
+    public function toggleStatus($id)
+    {
+        $vehicule = Vehicule::findOrFail($id);
+
+        // Inverse le statut plein <-> vide
+        $vehicule->status = ($vehicule->status === 'plein') ? 'vide' : 'plein';
+
+        $vehicule->save();
+
+        return redirect()->route('vehicules.index')->with('success', "Statut du véhicule mis à jour en '{$vehicule->status}'.");
     }
 }

@@ -1,7 +1,10 @@
 <?php
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AgenceController;
+use App\Http\Controllers\front\AcceuilController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\TrajetController;
 use App\Http\Controllers\VehiculeController;
 use Illuminate\Support\Facades\Route;
 
@@ -52,25 +55,46 @@ Route::prefix('vehicules')->name('vehicules.')->group(function () {
     Route::put('/{id}', [VehiculeController::class, 'update'])->name('update');
     Route::delete('/{id}', [VehiculeController::class, 'destroy'])->name('destroy');
 });
+Route::patch('vehicules/{id}/toggle-status', [VehiculeController::class, 'toggleStatus'])->name('vehicules.toggleStatus');
+
+
+
+Route::controller(TrajetController::class)->prefix('trajets')->name('trajets.')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/', 'store')->name('store');
+    Route::get('/{trajet}', 'show')->name('show');
+    Route::get('/{trajet}/edit', 'edit')->name('edit');
+    Route::put('/{trajet}', 'update')->name('update');
+    Route::delete('/{trajet}', 'destroy')->name('destroy');
+});
+
+Route::prefix('reservations')->name('reservations.')->group(function () {
+    Route::get('/', [ReservationController::class, 'index'])->name('index');
+    Route::get('/create', [ReservationController::class, 'create'])->name('create');
+    Route::post('/', [ReservationController::class, 'store'])->name('store');
+    Route::get('/{id}', [ReservationController::class, 'show'])->name('show');
+    Route::get('/{id}/edit', [ReservationController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [ReservationController::class, 'update'])->name('update');
+    Route::delete('/{id}', [ReservationController::class, 'destroy'])->name('destroy');
+    Route::patch('/{id}/changer-statut', [ReservationController::class, 'changerStatut'])->name('changerStatut');
+});
+Route::patch('/reservations/{reservation}/status', [ReservationController::class, 'updateStatus'])->name('reservations.updateStatus');
+
+
 Route::middleware(['auth'])->group(function () {
-    // Afficher la liste des utilisateurs
     Route::get('/users', [UserController::class, 'index'])->name('user.index');
-
-    // Afficher le formulaire pour créer un nouvel utilisateur
     Route::get('/users/create', [UserController::class, 'create'])->name('user.create');
-
-    // Enregistrer un nouvel utilisateur
     Route::post('/users', [UserController::class, 'store'])->name('user.store');
-
-    // Afficher un utilisateur spécifique
     Route::get('/users/{id}', [UserController::class, 'show'])->name('user.show');
-
-    // Afficher le formulaire pour modifier un utilisateur spécifique
     Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
-
-    // Mettre à jour les informations d'un utilisateur
     Route::put('/users/{id}', [UserController::class, 'update'])->name('user.update');
-
-    // Supprimer un utilisateur spécifique
     Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 });
+
+
+// route front
+Route::get('/', [AcceuilController::class, 'index']);
+Route::get('/vehicule/{id}', [AcceuilController::class, 'show'])->name('vehicule.show');
+
+

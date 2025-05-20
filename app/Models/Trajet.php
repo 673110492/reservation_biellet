@@ -9,9 +9,23 @@ class Trajet extends Model
 {
     use HasFactory;
 
-    public function vehicule() { return $this->belongsTo(Vehicule::class); }
-public function stationDepart() { return $this->belongsTo(Station::class, 'station_depart_id'); }
-public function stationArrivee() { return $this->belongsTo(Station::class, 'station_arrivee_id'); }
-public function horaires() { return $this->hasMany(Horaire::class); }
+    protected $fillable = [
+        'vehicule_id',
+        'depart',
+        'arrivee',
+        'prix',
+        'duree',
+        'distance_km',
+        'date_heure_depart',
+    ];
 
+    public function vehicule()
+    {
+        return $this->belongsTo(Vehicule::class);
+    }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 }

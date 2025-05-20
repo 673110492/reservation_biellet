@@ -25,6 +25,12 @@
     <link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
 
 
+    <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap Bundle JS (inclut Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 
 
 </head>
@@ -212,6 +218,14 @@
                     </li>
                     <li><a href="{{url('vehicules')}}"><i class="icon icon-app-store"></i><span
                                 class="nav-text">Vehicules</span></a>
+
+                    </li>
+                    <li><a href="{{url('trajets')}}"><i class="icon icon-app-store"></i><span
+                                class="nav-text">trajets</span></a>
+
+                    </li>
+                    <li><a href="{{url('reservations')}}"><i class="icon icon-app-store"></i><span
+                                class="nav-text">Reservation</span></a>
 
                     </li>
 
