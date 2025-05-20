@@ -24,12 +24,14 @@
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
 
+    <!-- Font Awesome 6 CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
     <!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Bootstrap Bundle JS (inclut Popper) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap Bundle JS (inclut Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
 
@@ -203,35 +205,39 @@
         <div class="quixnav">
             <div class="quixnav-scroll">
                 <ul class="metismenu" id="menu">
-                    <li class="nav-label first">Main Menu</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
+                    <li class="nav-label first">Menu Principal</li>
+
+                    <li>
+                        <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
                         <ul aria-expanded="false">
                             <li><a href="./index.html">Dashboard 1</a></li>
                             <li><a href="./index2.html">Dashboard 2</a></li>
                         </ul>
                     </li>
 
-                    <li><a href="{{url('agences')}}"><i class="icon icon-app-store"></i><span
-                                class="nav-text">Agences</span></a>
-
-                    </li>
-                    <li><a href="{{url('vehicules')}}"><i class="icon icon-app-store"></i><span
-                                class="nav-text">Vehicules</span></a>
-
-                    </li>
-                    <li><a href="{{url('trajets')}}"><i class="icon icon-app-store"></i><span
-                                class="nav-text">trajets</span></a>
-
-                    </li>
-                    <li><a href="{{url('reservations')}}"><i class="icon icon-app-store"></i><span
-                                class="nav-text">Reservation</span></a>
-
+                    <li>
+                        <a href="{{ url('agences') }}">
+                            <i class="fas fa-building"></i>
+                            <span class="nav-text">Agences</span>
+                        </a>
                     </li>
 
+                    <li>
+                        <a href="{{ url('vehicules') }}">
+                            <i class="fas fa-bus-alt"></i>
+                            <span class="nav-text">Véhicules</span>
+                        </a>
+                    </li>
 
+                    <li>
+                        <a href="{{ url('trajets') }}">
+                            <i class="fas fa-route"></i>
+                            <span class="nav-text">Véhicules</span>
+                    </li>
 
-                </ul>
             </div>
 
 
